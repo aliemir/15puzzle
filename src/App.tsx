@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container } from './elements/Container'
 import Header from './components/Header'
 import Board from './components/Board'
 import Footer from './components/Footer'
 import { Button } from './elements/Button'
-import use15Puzzle from './utils/game'
+import use15Puzzle, { GameStatus } from './utils/game'
+import useWindowFocus from './utils/useWindowFocus'
 
 function App() {
-  const { tiles, move, moves, time, newgame } = use15Puzzle()
+  const { tiles, move, moves, time, newgame, status, toggle } = use15Puzzle()
+  const isFocused = useWindowFocus()
+  useEffect(() => {
+    console.log('focus', isFocused)
+    if (!isFocused && status === GameStatus.active) {
+      toggle()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFocused])
   return (
     <Container>
       <Header>
@@ -23,6 +32,13 @@ function App() {
           </div>
         </div>
       </Header>
+      <div
+        className={`game-status ${
+          time > 0 && status === GameStatus.paused ? 'paused' : ''
+        }`}
+      >
+        {time > 0 && status === GameStatus.paused ? 'PAUSED' : ''}
+      </div>
       <Board onClickHandler={move as (index: number) => void} tiles={tiles} />
       <Footer />
     </Container>

@@ -1,10 +1,12 @@
 import React from 'react'
+import { HeaderWrapper } from '../elements/HeaderWrapper'
 
-const Header: React.FC = () => {
+const Header: React.FC = ({ children }) => {
   return (
-    <header>
+    <HeaderWrapper>
       <h1>15 Puzzle</h1>
-    </header>
+      <div className='controls'>{children}</div>
+    </HeaderWrapper>
   )
 }
 

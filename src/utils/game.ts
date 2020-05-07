@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import useInterval from './useInterval'
+import useMemoizedCallback from './useMemoizedCallback'
 
 const MATRIX_SIZE = 4
 
@@ -106,11 +107,10 @@ const _generateTiles = (array: GameArray): NumberTile[] => {
 
 const use15Puzzle = () => {
   const [array, setArray] = useState<GameArray>(_generate())
-  const [tiles, setTiles] = useState<NumberTile[] | undefined>(undefined)
+  const [tiles, setTiles] = useState<NumberTile[]>([])
   const [status, setStatus] = useState<GameStatus>(GameStatus.paused)
   const [time, setTime] = useState<number>(0)
   const [moves, setMoves] = useState<number>(0)
-  setTiles(_generateTiles(array))
 
   useInterval(
     () => {
@@ -120,16 +120,19 @@ const use15Puzzle = () => {
   )
 
   useEffect(() => {
-    setTiles(_generateTiles(array))
+    setTiles(_generateTiles(array).sort((a, b) => a.value - b.value))
   }, [array])
 
-  const move = (index: number): void => {
+  const move = useMemoizedCallback((index: number) => {
+    if (status === GameStatus.paused) {
+      setStatus(GameStatus.active)
+    }
     const newArray = _move(array, index)
     if (JSON.stringify(newArray) !== JSON.stringify(array)) {
       setArray(newArray)
       setMoves((prev) => prev + 1)
     }
-  }
+  })
 
   const newgame = (): void => {
     setArray(_generate())
@@ -144,7 +147,15 @@ const use15Puzzle = () => {
     )
   }
 
-  return [tiles, move, moves, time, newgame, toggle]
+  return {
+    tiles,
+    move: move,
+    moves,
+    time,
+    status,
+    newgame,
+    toggle,
+  }
 }
 
 export default use15Puzzle

@@ -11,11 +11,11 @@ export const TileWrapper = styled.div<TileWrapperProps>`
   position: absolute;
   padding: 0.75vmin;
   box-sizing: border-box;
+  top: ${(props) => props.col * 25}%;
+  left: ${(props) => props.row * 25}%;
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
-  transition-property: left, top;
-  left: ${(props) => props.col * 25}%;
-  top: ${(props) => props.row * 25};
+  transition-property: top, left;
   z-index: 1;
 
   .board-shadow & {

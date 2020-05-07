@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { NumberTile } from '../utils/game'
 import { BoardWrapper } from '../elements/BoardWrapper'
 import Tile from './Tile'
 
 export interface BoardProps {
-  onClick: () => void
+  onClickHandler: (index: number) => void
   tiles: NumberTile[]
 }
 
-const Board: React.FC<BoardProps> = ({ tiles, onClick }) => {
+const Board: React.FC<BoardProps> = ({ tiles, onClickHandler }) => {
   return (
     <BoardWrapper>
       {tiles.map((tile) => (
@@ -17,7 +17,7 @@ const Board: React.FC<BoardProps> = ({ tiles, onClick }) => {
           col={tile.col}
           row={tile.row}
           value={tile.value}
-          onClick={onClick}
+          onClick={onClickHandler}
           key={tile.value}
         />
       ))}

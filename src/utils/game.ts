@@ -1,4 +1,19 @@
+import React, { useState, useEffect } from 'react'
+import useInterval from './useInterval'
+
 const MATRIX_SIZE = 4
+
+export interface NumberTile {
+  col: number
+  row: number
+  value: number
+  index: number
+}
+
+export enum GameStatus {
+  paused = 'PAUSED',
+  active = 'ACTIVE',
+}
 
 type GameArray = Array<number | undefined>
 
@@ -74,6 +89,62 @@ const _move = (array: GameArray, index: number): GameArray => {
     return array
   }
 }
+
+const _generateTiles = (array: GameArray): NumberTile[] => {
+  return [...array]
+    .map(
+      (num, i) =>
+        ({
+          row: i % MATRIX_SIZE,
+          col: Math.floor(i / MATRIX_SIZE),
+          value: num,
+          index: i,
+        } as NumberTile)
+    )
+    .filter((tile) => tile.value !== undefined)
+}
+
+const use15Puzzle = () => {
+  const [array, setArray] = useState<GameArray>(_generate())
+  const [tiles, setTiles] = useState<NumberTile[] | undefined>(undefined)
+  const [status, setStatus] = useState<GameStatus>(GameStatus.paused)
+  const [time, setTime] = useState<number>(0)
+  const [moves, setMoves] = useState<number>(0)
+  setTiles(_generateTiles(array))
+
+  useInterval(
+    () => {
+      setTime((t) => t + 1)
+    },
+    status === GameStatus.active ? 1000 : null
+  )
+
+  useEffect(() => {
+    setTiles(_generateTiles(array))
+  }, [array])
+
+  const move = (index: number): void => {
+    const newArray = _move(array, index)
+    if (JSON.stringify(newArray) !== JSON.stringify(array)) {
+      setArray(newArray)
+      setMoves((prev) => prev + 1)
+    }
+  }
+
+  const newgame = (): void => {
+    setArray(_generate())
+  }
+
+  const toggle = (): void => {
+    setStatus(
+      status === GameStatus.active ? GameStatus.paused : GameStatus.active
+    )
+  }
+
+  return [tiles, moves, time, newgame, toggle]
+}
+
+export default use15Puzzle
 
 export const testables = {
   MATRIX_SIZE: MATRIX_SIZE,

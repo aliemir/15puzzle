@@ -11,7 +11,9 @@ const hex2rgb: HexToRgbFunction = (hex) => {
   return hexColor.match(/.{1,2}/g)?.map((h) => parseInt(h, 16)) ?? [0, 0, 0]
 }
 const rgb2hex: RgbToHexFunction = (r, g, b) => {
-  return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`
+  return `#${(r < 16 ? '0' : '') + r.toString(16).toUpperCase()}${
+    (g < 16 ? '0' : '') + g.toString(16).toUpperCase()
+  }${(b < 16 ? '0' : '') + b.toString(16).toUpperCase()}`
 }
 
 const lightenDarken: LightenDarkenFunction = (color, change) => {
@@ -41,4 +43,13 @@ export const lighten: LightenDarkenFunction = (color, change) => {
 
 export const darken: LightenDarkenFunction = (color, change) => {
   return lightenDarken(color, change * -1)
+}
+
+export const testables = {
+  hex2rgb: hex2rgb,
+  rgb2hex: rgb2hex,
+  lightenDarken: lightenDarken,
+  invert: invert,
+  lighten: lighten,
+  darken: darken,
 }

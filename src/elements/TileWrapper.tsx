@@ -9,7 +9,7 @@ export const TileWrapper = styled.div<TileWrapperProps>`
   width: 25%;
   height: 25%;
   position: absolute;
-  padding: 0.75vmin;
+  padding: 0.5vmin;
   box-sizing: border-box;
   top: ${(props) => props.col * 25}%;
   left: ${(props) => props.row * 25}%;

@@ -2,7 +2,14 @@ import styled from 'styled-components'
 
 export const FooterWrapper = styled.footer`
   text-align: center;
-  a {
-    padding: 20px;
+  padding-top: 10px;
+  border-top: 2px solid ${(props) => props.theme.colors.backgroundDark};
+  margin-top: 20px;
+  button {
+    padding: 10px;
+    outline: none;
+    border: none;
+    background: none;
+    margin: 0 10px;
   }
 `

@@ -1,32 +1,36 @@
 import styled from 'styled-components'
 
 interface TileInnerWrapperProps {
-  readonly inplace: boolean
+  readonly inplace?: boolean
+  readonly shadow?: boolean
 }
 
 export const TileInnerWrapper = styled.button<TileInnerWrapperProps>`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 6px;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   border: none;
   user-select: none;
   outline: none;
   cursor: pointer;
-  font-size: 11vmin;
-  font-family: sans-serif;
-  background: ${(props) => (props.inplace ? 'blue' : 'orange')};
+  font-size: 11.5vmin;
+  line-height: 14vmin;
+  font-family: 'Baloo 2', sans-serif;
+  background: ${(props) =>
+    props.inplace
+      ? props.theme.colors.secondary
+      : props.shadow
+      ? props.theme.colors.backgroundDark
+      : props.theme.colors.primary};
   transition-duration: 0.3s;
   transition-delay: 0.2s;
   transition-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
   transition-property: background-color;
-
-  .board-shadow & {
-    background: darkblue;
-  }
 `

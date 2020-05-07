@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React from 'react'
 import { NumberTile } from '../utils/game'
 import { BoardWrapper } from '../elements/BoardWrapper'
 import Tile from './Tile'

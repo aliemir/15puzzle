@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React from 'react'
 import { TileWrapper } from '../elements/TileWrapper'
 import { TileInnerWrapper } from '../elements/TileInnerWrapper'
 import { NumberTile } from '../utils/game'
@@ -8,9 +8,6 @@ export interface TileProps extends NumberTile {
 }
 
 const Tile: React.FC<TileProps> = ({ col, row, value, index, onClick }) => {
-  useEffect(() => {
-    console.log('on click changed')
-  }, [onClick])
   return (
     <>
       <TileWrapper row={row} col={col}>

@@ -133,6 +133,9 @@ const use15Puzzle = () => {
 
   const newgame = (): void => {
     setArray(_generate())
+    setStatus(GameStatus.paused)
+    setMoves(0)
+    setTime(0)
   }
 
   const toggle = (): void => {
@@ -141,7 +144,7 @@ const use15Puzzle = () => {
     )
   }
 
-  return [tiles, moves, time, newgame, toggle]
+  return [tiles, move, moves, time, newgame, toggle]
 }
 
 export default use15Puzzle

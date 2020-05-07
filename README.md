@@ -5,3 +5,6 @@
 I'm new to styled-components and Typescript, any PRs and suggestions are welcome and greatly appreciated.
 
 [Play Game](https://15puzzle.aliemir.now.sh)
+
+- [ ] Pause game when window is unfocused
+- [ ] serve as pwa

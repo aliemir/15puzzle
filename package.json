@@ -1,6 +1,11 @@
 {
   "name": "15puzzle",
-  "version": "0.1.0",
+  "author": {
+    "name": "Ali Emir Sen",
+    "email": "senaliemir@gmail.com",
+    "url": "https://github.com/aliemir"
+  },
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

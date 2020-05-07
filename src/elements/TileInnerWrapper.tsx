@@ -21,7 +21,7 @@ export const TileInnerWrapper = styled.button<TileInnerWrapperProps>`
   outline: none;
   cursor: pointer;
   font-size: 11.5vmin;
-  line-height: 14vmin;
+  line-height: 12vmin;
   font-family: 'Baloo 2', sans-serif;
   background: ${(props) =>
     props.inplace

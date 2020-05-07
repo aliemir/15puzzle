@@ -1,11 +1,9 @@
 import React from 'react'
 import { TileWrapper } from '../elements/TileWrapper'
 import { TileInnerWrapper } from '../elements/TileInnerWrapper'
+import { NumberTile } from '../utils/game'
 
-export interface TileProps {
-  col: number
-  row: number
-  value: number
+export interface TileProps extends NumberTile {
   onClick: () => void
 }
 

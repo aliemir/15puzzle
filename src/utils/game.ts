@@ -18,12 +18,45 @@ export enum GameStatus {
 
 type GameArray = Array<number | undefined>
 
+const _numberOfInversion = (array: GameArray): number => {
+  let count = 0
+  for (let i = 0; i < array.length - 1; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[j] && array[i] && (array[i] ?? 0) > (array[j] ?? 0)) {
+        count++
+      }
+    }
+  }
+  return count
+}
+
+const _isSolvable = (array: GameArray): boolean => {
+  const inversionCount = _numberOfInversion(array)
+  const emptyIndex = array.findIndex((a) => a === undefined)
+  const emptyRow = Math.floor(emptyIndex / MATRIX_SIZE)
+  if (MATRIX_SIZE % 2 === 0) {
+    return (
+      (emptyRow % 2 === 0 && inversionCount % 2 === 1) ||
+      (emptyRow % 2 === 1 && inversionCount % 2 === 0)
+    )
+  } else {
+    return inversionCount % 2 === 0
+  }
+}
+
 const _shuffle = (array: GameArray) => {
   const newArray = [...array]
-  for (let i = newArray.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1))
-    ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+  let solvable = false
+  const _shuffleFunction = () => {
+    for (let i = newArray.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1))
+      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+    }
   }
+  do {
+    _shuffleFunction()
+    solvable = _isSolvable(newArray)
+  } while (!solvable)
   return newArray
 }
 
@@ -164,6 +197,8 @@ export const testables = {
   MATRIX_SIZE: MATRIX_SIZE,
   generate: _generate,
   shuffle: _shuffle,
+  isSolvable: _isSolvable,
+  numberOfInversion: _numberOfInversion,
   getNeighbors: _getNeighbors,
   canMove: _canMove,
   move: _move,

@@ -1,4 +1,3 @@
-import React from 'react'
 import { testables } from './game'
 
 describe('can generate and shuffle', () => {
@@ -15,6 +14,27 @@ describe('can generate and shuffle', () => {
     expect(shuffled).toHaveLength(MATRIX_SIZE * MATRIX_SIZE)
     expect(shuffled).toContain(undefined)
     expect(shuffled.filter((a) => a === undefined)).toHaveLength(1)
+  })
+})
+
+describe('check for solvable board', () => {
+  const { isSolvable, generate, numberOfInversion } = testables
+  const array1 = [13, 2, 10, 3, 1, 12, 8, 4, 5, undefined, 9, 6, 15, 14, 11, 7]
+  const array2 = [6, 13, 7, 10, 8, 9, 11, undefined, 15, 2, 12, 5, 14, 3, 1, 4]
+  const array3 = [3, 9, 1, 15, 14, 11, 4, 6, 13, undefined, 10, 12, 2, 7, 8, 5]
+  it('returns correct number of inversions', () => {
+    expect(numberOfInversion(array1)).toBe(41)
+    expect(numberOfInversion(array2)).toBe(62)
+    expect(numberOfInversion(array3)).toBe(56)
+  })
+  it('returns true if solvable', () => {
+    expect(isSolvable(array1)).toBeTruthy()
+    expect(isSolvable(array2)).toBeTruthy()
+    expect(isSolvable(array3)).toBeFalsy()
+  })
+  it('shuffle returns solvable array', () => {
+    const shuffled1 = generate(true)
+    expect(isSolvable(shuffled1)).toBeTruthy()
   })
 })
 

@@ -22,4 +22,17 @@ const Tile: React.FC<TileProps> = ({ col, row, value, index, onClick }) => {
   )
 }
 
+export const ShadowTile: React.FC<{ col: number; row: number }> = ({
+  col,
+  row,
+}) => {
+  return (
+    <>
+      <TileWrapper row={row} col={col}>
+        <TileInnerWrapper shadow></TileInnerWrapper>
+      </TileWrapper>
+    </>
+  )
+}
+
 export default React.memo(Tile)

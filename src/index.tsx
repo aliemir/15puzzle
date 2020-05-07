@@ -9,6 +9,10 @@ import GlobalStyle from './styles/global'
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      <link
+        href='https://fonts.googleapis.com/css?family=Baloo+2:400,500,600,700,800&display=swap'
+        rel='stylesheet'
+      />
       <GlobalStyle />
       <App />
     </ThemeProvider>

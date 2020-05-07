@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import useInterval from './useInterval'
 import useMemoizedCallback from './useMemoizedCallback'
 
-const MATRIX_SIZE = 4
+export const MATRIX_SIZE = 4
 
 export interface NumberTile {
   col: number

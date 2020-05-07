@@ -8,6 +8,9 @@ export interface TileProps extends NumberTile {
 }
 
 const Tile: React.FC<TileProps> = ({ col, row, value, index, onClick }) => {
+  useEffect(() => {
+    console.log('on click changed')
+  }, [onClick])
   return (
     <>
       <TileWrapper row={row} col={col}>

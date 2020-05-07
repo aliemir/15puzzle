@@ -20,8 +20,8 @@ export const TileInnerWrapper = styled.button<TileInnerWrapperProps>`
   user-select: none;
   outline: none;
   cursor: pointer;
-  font-size: 11.5vmin;
-  line-height: 12vmin;
+  font-size: min(11.5vmin, 105px);
+  line-height: min(12vmin, 105px);
   font-family: 'Baloo 2', sans-serif;
   background: ${(props) =>
     props.inplace

@@ -11,7 +11,6 @@ function App() {
   const { tiles, move, moves, time, newgame, status, toggle } = use15Puzzle()
   const isFocused = useWindowFocus()
   useEffect(() => {
-    console.log('focus', isFocused)
     if (!isFocused && status === GameStatus.active) {
       toggle()
     }

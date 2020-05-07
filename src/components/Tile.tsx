@@ -12,6 +12,7 @@ const Tile: React.FC<TileProps> = ({ col, row, value, index, onClick }) => {
     <>
       <TileWrapper row={row} col={col}>
         <TileInnerWrapper
+          className='number-tile'
           inplace={index + 1 === value}
           onClick={() => onClick(index)}
         >

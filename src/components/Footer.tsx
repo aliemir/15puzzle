@@ -6,13 +6,13 @@ const Footer: React.FC = () => {
   return (
     <FooterWrapper>
       <button
-        className='go-to-github-profile'
+        name='go to github'
         onClick={() => (window.location.href = 'https://github.com/aliemir')}
       >
         <GithubSVG />
       </button>
       <button
-        className='go-to-twitter-profile'
+        name='go to twitter'
         onClick={() =>
           (window.location.href = 'https://twitter.com/aliemirsen')
         }

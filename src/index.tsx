@@ -3,16 +3,12 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { ThemeProvider } from 'styled-components'
-import { theme } from './styles/theme'
+import { randomTheme } from './styles/theme'
 import GlobalStyle from './styles/global'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <link
-        rel='stylesheet'
-        href='https://fonts.googleapis.com/css?family=Baloo+2:700&display=swap'
-      />
+    <ThemeProvider theme={randomTheme()}>
       <GlobalStyle />
       <App />
     </ThemeProvider>

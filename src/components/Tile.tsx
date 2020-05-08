@@ -13,6 +13,7 @@ const Tile: React.FC<TileProps> = ({ col, row, value, index, onClick }) => {
       <TileWrapper row={row} col={col}>
         <TileInnerWrapper
           className='number-tile'
+          name={`tile ${row}-${col} value ${value}`}
           inplace={index + 1 === value}
           onClick={() => onClick(index)}
         >
@@ -30,7 +31,12 @@ export const ShadowTile: React.FC<{ col: number; row: number }> = ({
   return (
     <>
       <TileWrapper row={row} col={col}>
-        <TileInnerWrapper shadow></TileInnerWrapper>
+        <TileInnerWrapper
+          shadow
+          aria-hidden='true'
+          role='none/presentation'
+          name='shadow tile'
+        ></TileInnerWrapper>
       </TileWrapper>
     </>
   )

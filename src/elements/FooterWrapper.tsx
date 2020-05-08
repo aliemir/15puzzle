@@ -6,6 +6,7 @@ export const FooterWrapper = styled.footer`
   border-top: 2px solid ${(props) => props.theme.colors.backgroundDark};
   margin-top: 20px;
   button {
+    cursor: pointer;
     padding: 10px;
     outline: none;
     border: none;

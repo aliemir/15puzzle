@@ -140,7 +140,7 @@ const _generateTiles = (array: GameArray): NumberTile[] => {
 }
 
 const use15Puzzle = () => {
-  const [array, setArray] = useState<GameArray>(_generate(false))
+  const [array, setArray] = useState<GameArray>(_generate())
   const [tiles, setTiles] = useState<NumberTile[]>([])
   const [status, setStatus] = useState<GameStatus>(GameStatus.paused)
   const [time, setTime] = useState<number>(0)

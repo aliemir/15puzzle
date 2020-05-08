@@ -38,7 +38,11 @@ function App() {
       >
         {time > 0 && status === GameStatus.paused ? 'PAUSED' : ''}
       </div>
-      <Board onClickHandler={move as (index: number) => void} tiles={tiles} />
+      <Board
+        onClickHandler={move as (index: number) => void}
+        tiles={tiles}
+        finished={status === GameStatus.finished}
+      />
       <Footer />
     </Container>
   )

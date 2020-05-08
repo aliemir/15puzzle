@@ -6,6 +6,7 @@ import Tile, { ShadowTile } from './Tile'
 export interface BoardProps {
   onClickHandler: (index: number) => void
   tiles: NumberTile[]
+  finished?: boolean
 }
 
 const shadowArray = Array.from(
@@ -17,9 +18,19 @@ const shadowArray = Array.from(
   })
 )
 
-const Board: React.FC<BoardProps> = ({ tiles, onClickHandler }) => {
+const Board: React.FC<BoardProps> = ({ finished, tiles, onClickHandler }) => {
   return (
     <BoardWrapper>
+      <div
+        className='overlay'
+        style={
+          finished
+            ? { opacity: 1, visibility: 'visible' }
+            : { opacity: 0, visibility: 'hidden' }
+        }
+      >
+        Well Done!
+      </div>
       {shadowArray.map((st) => (
         <ShadowTile key={st.value} col={st.col} row={st.row} />
       ))}

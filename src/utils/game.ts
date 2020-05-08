@@ -14,6 +14,7 @@ export interface NumberTile {
 export enum GameStatus {
   paused = 'PAUSED',
   active = 'ACTIVE',
+  finished = 'FINISHED',
 }
 
 type GameArray = Array<number | undefined>
@@ -139,7 +140,7 @@ const _generateTiles = (array: GameArray): NumberTile[] => {
 }
 
 const use15Puzzle = () => {
-  const [array, setArray] = useState<GameArray>(_generate())
+  const [array, setArray] = useState<GameArray>(_generate(false))
   const [tiles, setTiles] = useState<NumberTile[]>([])
   const [status, setStatus] = useState<GameStatus>(GameStatus.paused)
   const [time, setTime] = useState<number>(0)
@@ -154,6 +155,18 @@ const use15Puzzle = () => {
 
   useEffect(() => {
     setTiles(_generateTiles(array).sort((a, b) => a.value - b.value))
+
+    if (
+      array.reduce((acc, curr, i) => {
+        if (i + 1 === curr || curr === undefined) {
+          return acc && true
+        } else {
+          return false
+        }
+      }, true)
+    ) {
+      setStatus(GameStatus.finished)
+    }
   }, [array])
 
   const move = useMemoizedCallback((index: number) => {

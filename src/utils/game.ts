@@ -155,18 +155,10 @@ const use15Puzzle = () => {
 
   useEffect(() => {
     setTiles(_generateTiles(array).sort((a, b) => a.value - b.value))
-
-    if (
-      array.reduce((acc, curr, i) => {
-        if (i + 1 === curr || curr === undefined) {
-          return acc && true
-        } else {
-          return false
-        }
-      }, true)
-    ) {
-      setStatus(GameStatus.finished)
-    }
+    const isFinished = array.every(
+      (item, i) => item === i + 1 || item === undefined
+    )
+    if (isFinished) setStatus(GameStatus.finished)
   }, [array])
 
   const move = useMemoizedCallback((index: number) => {

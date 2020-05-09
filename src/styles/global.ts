@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    margin-left: calc(100vw - 100%);
+  }
   body {
     background: ${(props) => props.theme.colors.background};
     box-sizing: border-box;

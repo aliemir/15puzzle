@@ -8,6 +8,7 @@ export const BoardWrapper = styled.div`
   .overlay {
     visibility: visible;
     opacity: 1;
+    text-align: center;
     transition-duration: 0.3s;
     transition-property: visibility, opacity;
     transition-timing-function: ease;

@@ -11,4 +11,5 @@ export const Button = styled.button`
   color: white;
   text-decoration: none;
   user-select: none;
+  cursor: pointer;
 `
